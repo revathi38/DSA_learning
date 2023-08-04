@@ -5,6 +5,7 @@ can be visited from source node
 """
 from collections import defaultdict, deque
 
+
 def solve(nodes, edges, src, dest):
     # create adjancey list
     n = len(nodes)
@@ -12,9 +13,8 @@ def solve(nodes, edges, src, dest):
     for i in range(len(edges)):
         graph[nodes[i]].append(edges[i])
         graph[edges[i]].append(nodes[i])
-    
 
-    visited = [False] * (n+1)
+    visited = [False] * (n + 1)
     q = deque()
 
     q.append(src)
@@ -27,10 +27,10 @@ def solve(nodes, edges, src, dest):
             if visited[graph[current_node][j]] == False:
                 visited[graph[current_node][j]] = True
                 q.append(graph[current_node][j])
-    
+
     return visited[dest]
 
 
 print(solve([1, 1, 2, 2, 4, 3, 3], [2, 4, 4, 3, 5, 5, 6], 1, 6))
-#TC: O(E)
-#SC: O(E) +O(N)
+# TC: O(E)
+# SC: O(E) +O(N)
