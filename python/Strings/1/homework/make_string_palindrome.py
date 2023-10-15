@@ -51,7 +51,7 @@ Explanation 2:
 def create_lps(string):
     n = len(string)
     lps = [0] * n
-
+    
     l = 0
     i = 1
 
