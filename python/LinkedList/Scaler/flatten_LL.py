@@ -52,3 +52,76 @@ Output 2:
 
  2 -> 4 -> 7 -> 7 -> 11
 """
+
+
+class Node:
+    def __init__(self, value):
+        self.val = value
+        self.right = None  # Pointer to the next node in the main list
+        self.down = None   # Pointer to the linked list where this node is the head
+
+
+def flattenLinkedList(head):
+    if not head or not head.right:
+        return head
+
+    curr = head
+
+    return merge(curr, flattenLinkedList(curr.right))
+
+
+def merge(x, y):
+    if x is None:
+        return y
+    if y is None:
+        return x
+    if x.val < y.val:
+        ans = x
+        x_down = merge(x.down, y)
+        ans.down = x_down
+    else:
+        ans = y
+        y_down = merge(y.down, x)
+        ans.down = y_down
+
+    return ans
+
+
+def print_list(head):
+    current = head
+    while current:
+        print(current.val, end=" -> ")
+        current = current.down
+    print()
+
+
+# Create nodes for the first example input
+node1 = Node(3)
+node1.down = Node(7)
+node1.down.down = Node(8)
+node1.right = Node(4)
+node1.right.down = Node(11)
+node1.right.down.down = Node(39)
+node1.right.right = Node(20)
+node1.right.right.down = Node(22)
+node1.right.right.down.down = Node(28)
+node1.right.right.right = Node(20)
+node1.right.right.right.down = Node(20)
+node1.right.right.right.down.down = Node(39)
+node1.right.right.right.right = Node(30)
+node1.right.right.right.right.down = Node(31)
+
+
+root1 = flattenLinkedList(node1)
+print_list(root1)
+
+# Create nodes for the second example input
+node2 = Node(2)
+node2.down = Node(7)
+node2.down.down = Node(7)
+node2.right = Node(4)
+node2.right.down = Node(11)
+
+
+root2 = flattenLinkedList(node2)
+print_list(root2)
