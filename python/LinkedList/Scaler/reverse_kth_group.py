@@ -5,23 +5,27 @@ class Node:
 
 
 def reverse_kth_group(head, k):
-    if not head or not head.next:
+    count = 0
+    temp = head
+
+    while temp and count < k:
+        temp = temp.next
+        count += 1
+
+    if count < k:
         return head
 
-    curr = head
     prev = None
-    count = k
+    current = head
 
-    while curr and count > 0:
-        next_node = curr.next
-        curr.next = prev
-        prev = curr
-        curr = next_node
-        count -= 1
+    for _ in range(k):
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
 
-    if curr:
-        head.next = reverse_kth_group(curr, k)
-
+    # Recursively reverse the next group
+    head.next = reverse_kth_group(current, k)
     return prev
 
 # Function to print the linked list

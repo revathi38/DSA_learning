@@ -3,6 +3,7 @@ class Node:
         self.val = val
         self.next = None
 
+
 """
 h       (none)
 M -> A -> D <- A <- M      None
@@ -19,6 +20,7 @@ M   ->  A   ->  D   ->  none
                         head                                                        
 """
 
+
 def isPalindrome(head):
     # find the middle element
     slow = head
@@ -28,7 +30,7 @@ def isPalindrome(head):
         slow = slow.next
         fast = fast.next.next
 
-    #reversing the linkedlist from middle element
+    # reversing the linkedlist from middle element
 
     prev = None
     curr = slow
@@ -38,8 +40,8 @@ def isPalindrome(head):
         curr.next = prev
         prev = curr
         curr = nextNode
-    
-    #check head node and prev node values
+
+    # check head node and prev node values
 
     while head:
         if head.val != prev.val:
@@ -48,11 +50,6 @@ def isPalindrome(head):
         prev = prev.next
 
     return True
-
-        
-        
-
-
 
 
 headNode = Node("M")
@@ -65,5 +62,5 @@ headNode.next.next.next.next.next.next = Node("M")
 print(isPalindrome(headNode))
 
 
-
-    
+# TC: O(N)
+# SC: O(1)

@@ -6,21 +6,30 @@ class Node {
 }
 
 function reverse_k_group_nodes(head, k) {
+  let temp = head;
+  let count = 0;
+
+  while (temp && count < k) {
+    temp = temp.next;
+    count += 1;
+  }
+
+  if (count < k) {
+    return head;
+  }
+
   let curr = head;
   let prev = null;
-  let count = k;
 
-  while (curr && count > 0) {
+  for (let i = 0; i < k; i++) {
     let nextNode = curr.next;
     curr.next = prev;
     prev = curr;
     curr = nextNode;
-    count -= 1;
   }
 
-  if (curr) {
-    head.next = reverse_k_group_nodes(curr, k);
-  }
+  head.next = reverse_k_group_nodes(curr, k);
+
   return prev;
 }
 

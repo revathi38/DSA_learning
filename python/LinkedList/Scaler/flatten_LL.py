@@ -125,3 +125,7 @@ node2.right.down = Node(11)
 
 root2 = flattenLinkedList(node2)
 print_list(root2)
+
+
+# TC: O(N)
+# SC: O(1)
